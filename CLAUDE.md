@@ -687,5 +687,27 @@ node index.js     # Lance Express sur http://localhost:3001
 
 ---
 
+---
+
+## 23. Écosystème RAG — Décisions d'architecture (mars 2026)
+
+### Projet Mek Rag
+
+Un projet distinct, **Mek Rag**, sera développé après Minou V2. Il est à connaître dès maintenant car il aura des **incidences mutuelles** avec Minou — les deux projets s'influenceront l'un l'autre.
+
+### Série de RAGs envisagée
+
+Mek Rag sera vraisemblablement le **premier d'une série**. D'autres RAGs dédiés sont anticipés :
+- RAG sur **Mm80**
+- RAG sur **Notion**
+- RAG sur **GitHub**
+- Potentiellement d'autres
+
+### Conséquences pour Minou
+
+L'architecture de Minou (V1 et V2) doit **anticiper l'interopérabilité avec ces RAGs** — notamment au niveau de l'architecture MCP (section 19) qui sera le point d'entrée naturel pour les connecter. Ne pas concevoir Minou comme un silo fermé.
+
+---
+
 *Brief rédigé en mars 2026 — Medwin & Claude*
 *Version : 1.0 — À mettre à jour au fil des décisions techniques prises avec Claude Code*
