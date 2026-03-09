@@ -1,4 +1,4 @@
-# minou.run.md — État exécutif du projet Minou
+# minou.todo.md — État exécutif du projet Minou
 
 > Mis à jour à chaque clôture de session. Lire en priorité pour se remettre dans le contexte.
 
