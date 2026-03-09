@@ -6,6 +6,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Guide Claude Code
 
+### Workflow Git — règle absolue
+
+Chaque nouvelle fonctionnalité se développe sur une branche dédiée. On ne touche jamais directement à `main`.
+
+```
+main          ← code validé et stable uniquement
+dev           ← branche d'intégration
+feature/xxx   ← une feature = une branche, créée depuis dev
+```
+
+**Cycle de travail :**
+```bash
+# 1. Partir de dev à jour
+git checkout dev && git pull
+
+# 2. Créer la branche feature
+git checkout -b feature/nom-de-la-feature
+
+# 3. Développer, committer au fil de l'eau
+git add <fichiers> && git commit -m "description"
+
+# 4. Une fois validée, merger dans dev
+git checkout dev && git merge feature/nom-de-la-feature
+
+# 5. Quand dev est stable, merger dans main
+git checkout main && git merge dev && git push
+```
+
+Les branches `feature/xxx` sont supprimées après merge. `main` ne reçoit que du code testé et validé.
+
 ### Commandes de développement
 
 ```bash
