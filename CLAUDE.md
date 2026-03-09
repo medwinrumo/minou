@@ -94,7 +94,7 @@ Le code utilise `claude-sonnet-4-6` (pas `claude-sonnet-3-7` mentionné dans la 
 2. Implémenter le streaming SSE dans `server/routes/chat.js` (OpenAI, Anthropic, Mistral, Gemini)
 3. Intégrer `marked` + `highlight.js` dans `MessageList.jsx` pour le rendu Markdown
 4. CRUD conversations dans `server/routes/conversations.js` + affichage sidebar
-5. Dropdown modèle fonctionnel dans `InputArea.jsx` (appel `GET /api/models`)
+5. ~~Dropdown modèle fonctionnel~~ — déjà fait (`ModelSelector.jsx`)
 
 ---
 
@@ -123,7 +123,7 @@ L'objectif de la V1 est un assistant augmenté (mémoire, vision, OCR, recherche
 
 | Couche | Technologie |
 |---|---|
-| Frontend | React 18, Tailwind CSS, Vite |
+| Frontend | React 19, Tailwind CSS, Vite |
 | Backend | Node.js (Express) |
 | Base de données | Firebase Firestore |
 | Auth | Firebase Auth (JWT, session persistante) |
@@ -621,18 +621,20 @@ Le code est conçu pour être **autonome et auto-suffisant par instance.**
 ### Arborescence
 ```
 minou/
-├── client/                    # Frontend React 18 + Vite + Tailwind
+├── client/                    # Frontend React 19 + Vite + Tailwind
 │   └── src/
 │       ├── App.jsx            # Composant racine, layout principal
 │       ├── index.css          # Variables CSS (thème), import Tailwind
 │       ├── contexts/
 │       │   ├── AuthContext.jsx  # Firebase Auth, hook useAuth()
 │       │   └── ChatContext.jsx  # État conversation, hook useChat()
+│       ├── pages/
+│       │   └── LoginPage.jsx    # Formulaire email/password Firebase Auth
 │       └── components/
 │           ├── Header.jsx       # Hamburger, toggle thème, actions globales
 │           ├── Sidebar.jsx      # Historique conversations, navigation
 │           ├── MessageList.jsx  # Fil de messages, scroll automatique
-│           ├── InputArea.jsx    # Textarea, envoi, compteurs de coût
+│           ├── InputArea.jsx    # Textarea, envoi, compteurs de coût (simulés)
 │           └── ModelSelector.jsx # Dropdown modèle LLM chargé depuis /api/models
 ├── server/                    # Backend Express
 │   ├── index.js               # Point d'entrée, montage des routes
@@ -659,15 +661,15 @@ node index.js     # Lance Express sur http://localhost:3001
 ```
 
 ### Ce qui reste à implémenter (par priorité)
-1. **Clé API Anthropic dans `.env`** — remplir `/Users/medwinrumo/dev./minou/.env` avec `ANTHROPIC_API_KEY=sk-ant-...`
+1. **Installer `firebase-admin`** dans `/server` : `npm install firebase-admin` — requis pour toutes les routes Firestore côté backend
 2. **Streaming chat** (`server/routes/chat.js`) : appels SSE vers OpenAI / Anthropic / Mistral / Gemini
 3. **Markdown** dans `MessageList.jsx` : intégrer `marked` + `highlight.js`
 4. **Conversations Firestore** : CRUD complet dans `conversations.js` + affichage sidebar
-5. **Sélecteur de modèle** : dropdown fonctionnel dans InputArea
 
 ### Ce qui est fait ✅
 - Structure complète client (React/Vite/Tailwind) + server (Express) scaffoldée
 - Firebase Auth branché — `firebase.js`, `AuthContext.jsx`, `LoginPage.jsx`
+- `ModelSelector.jsx` fonctionnel — charge depuis `GET /api/models`, groupe par provider, met à jour le contexte
 - Page de login fonctionnelle — email/mot de passe Firebase
 - Utilisateur créé dans Firebase Console (projet `minou-3850`)
 - Firestore activé en mode test (région `eur3`)
