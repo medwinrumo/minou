@@ -4,10 +4,13 @@
 
 ---
 
-## Dernière session — 2026-03-09
+## Dernière session — 2026-03-17
 
 ### Ce qui a été fait
-- Lecture de l'état du projet — pas d'avancement technique
+- Sécurité : rotation de la clé API Firebase après exposition dans le repo public GitHub
+- Sortie de la config Firebase du code source vers des variables d'environnement Vite (`VITE_*`)
+- Création de `client/.env` (gitignored) avec la nouvelle clé
+- Mise à jour `client/.gitignore`, `.env.example`, `client/src/firebase.js`
 
 ---
 

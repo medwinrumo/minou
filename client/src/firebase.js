@@ -1,15 +1,16 @@
-// Configuration Firebase — projet minou-3850
+// Configuration Firebase — lue depuis les variables d'environnement Vite
+// Les valeurs sont dans client/.env (jamais committé)
 import { initializeApp } from 'firebase/app';
 import { getAuth }       from 'firebase/auth';
 import { getFirestore }  from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey:            "AIzaSyBk3Mt0Jz-sKoh8g9KEnMz7H-caNgMmfHQ",
-  authDomain:        "minou-3850.firebaseapp.com",
-  projectId:         "minou-3850",
-  storageBucket:     "minou-3850.firebasestorage.app",
-  messagingSenderId: "1057563213786",
-  appId:             "1:1057563213786:web:47852a9151845b4ebc8ae3",
+  apiKey:            import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain:        import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId:         import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket:     import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId:             import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);

@@ -64,12 +64,15 @@ Pas de framework de test configuré. Pas de commande `npm install` globale — i
 
 ### `.env` — emplacement et chargement
 
-Le fichier `.env` est à la **racine du projet** (`/minou/.env`), pas dans `/server/`. Le serveur le charge via `require('dotenv').config({ path: '../.env' })`. Le `.env.example` à la racine sert de référence.
+**Backend :** le fichier `.env` est à la **racine du projet** (`/minou/.env`), pas dans `/server/`. Le serveur le charge via `require('dotenv').config({ path: '../.env' })`. Le `.env.example` à la racine sert de référence.
+
+**Frontend :** la config Firebase est dans **`client/.env`** (gitignored), avec le préfixe `VITE_` requis par Vite. `firebase.js` lit ces valeurs via `import.meta.env.VITE_FIREBASE_*`. Ne jamais mettre de config Firebase en dur dans le code source.
 
 ### État d'implémentation actuel
 
 **Fait :**
 - Auth Firebase (client) — `AuthContext.jsx`, `LoginPage.jsx`, `firebase.js`
+- Config Firebase sortie du code source → `client/.env` (variables `VITE_FIREBASE_*`)
 - Layout principal — `App.jsx`, `Header.jsx`, `Sidebar.jsx`, `MessageList.jsx`, `InputArea.jsx`
 - `GET /api/models` — retourne la liste des modèles avec les prix depuis `.env`
 - Structure des routes Express montées dans `server/index.js`
